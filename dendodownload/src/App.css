@@ -1,0 +1,513 @@
+.shell {
+  width: min(1180px, 100% - 48px);
+  margin-inline: auto;
+}
+
+.accent {
+  color: var(--blue);
+}
+
+/* ---------------- Buttons ---------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+  padding: 14px 26px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 24px rgba(26, 92, 255, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--blue-dark);
+  transform: translateY(-1px);
+}
+
+/* ---------------- Nav ---------------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 96px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* logo.png is a solid white silhouette on transparency, so it can't show on a
+   white page — use it as a mask and paint the brand blue through its shape */
+.brand-mark {
+  display: block;
+  /* match the PNG's own canvas (2964x2370) so `contain` doesn't letterbox it */
+  height: 60px;
+  aspect-ratio: 2964 / 2370;
+  background: var(--blue);
+  mask: url('./assets/logo.png') center / contain no-repeat;
+  -webkit-mask: url('./assets/logo.png') center / contain no-repeat;
+}
+
+/* ---------------- Download dropdown ---------------- */
+.download-menu {
+  position: relative;
+  margin-left: auto;
+}
+
+.nav-cta .chevron {
+  transition: transform 0.18s ease;
+}
+
+.nav-cta .chevron.up {
+  transform: rotate(180deg);
+}
+
+.menu-pop {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + 10px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 232px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+
+  /* animate open without leaving an invisible click-trap when closed */
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s ease,
+    visibility 0.16s;
+}
+
+.menu-pop.open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--ink);
+  transition: background 0.15s ease;
+}
+
+.menu-item:hover,
+.menu-item:focus-visible {
+  background: var(--blue-soft);
+}
+
+.menu-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.menu-text small {
+  font-size: 0.68rem;
+  color: var(--text);
+}
+
+.menu-text strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-pop,
+  .nav-cta .chevron {
+    transition: none;
+  }
+}
+
+/* ---------------- Hero ---------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(32px, 6vw, 72px) 0 clamp(48px, 7vw, 96px);
+}
+
+.hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 64px);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 3;
+}
+
+.hero-copy h1 {
+  margin-bottom: 30px;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.hero-sub {
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-weight: 700;
+}
+
+.hero-text {
+  margin-top: 16px;
+  max-width: 44ch;
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+/* Download card — a blue tab riding over a bordered white panel */
+.download-card {
+  position: relative;
+  margin-top: 48px;
+  padding-top: 27px;
+  width: min(420px, 100%);
+}
+
+.btn-download {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(300px, 78%);
+  padding: 16px 0;
+  background: var(--blue);
+  color: #fff;
+  letter-spacing: 0.06em;
+  font-size: 0.95rem;
+  font-weight: 700;
+  /* rounded top, domed bottom — the tab shape from the design */
+  border-radius: 14px 14px 26px 26px / 14px 14px 46px 46px;
+  box-shadow: 0 12px 24px rgba(26, 92, 255, 0.28);
+}
+
+.btn-download:hover {
+  background: var(--blue-dark);
+}
+
+.download-panel {
+  display: flex;
+  align-items: center;
+  padding: 34px 10px 20px;
+  background: #fff;
+  border: 1px solid #cfdcf7;
+  border-radius: 18px;
+}
+
+.os {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 1.1rem;
+  padding: 8px 0;
+  border-radius: 10px;
+}
+
+.os:hover {
+  color: var(--blue);
+}
+
+.os-divider {
+  width: 1px;
+  height: 34px;
+  background: #cfdcf7;
+}
+
+/* Hero art */
+.hero-art {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.phones {
+  position: relative;
+  width: 100%;
+  /* source is 966px wide; 520 keeps it sharp even at 2x DPR */
+  max-width: 520px;
+  height: auto;
+}
+
+/* Decorations */
+.decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+
+/* the pale disc the phones stand on */
+.blob {
+  position: absolute;
+  right: -6%;
+  bottom: -34%;
+  width: min(760px, 58vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #e8eefb;
+  opacity: 0.75;
+}
+
+.dots {
+  position: absolute;
+  right: 4%;
+  top: 38%;
+  width: 116px;
+  height: 132px;
+  background-image: radial-gradient(#c9d6f2 2.5px, transparent 2.5px);
+  background-size: 17px 17px;
+}
+
+/* ---------------- Platforms ---------------- */
+.platforms {
+  padding: clamp(24px, 4vw, 40px) 0 clamp(64px, 8vw, 110px);
+}
+
+.section-title {
+  text-align: center;
+  font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+  font-weight: 800;
+  margin-bottom: clamp(28px, 4vw, 44px);
+}
+
+.platform-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: clamp(16px, 2.5vw, 32px);
+  max-width: 980px;
+}
+
+.platform-card {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 34px);
+  padding: clamp(20px, 3vw, 34px);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.platform-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.platform-logo {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+  color: var(--ink);
+}
+
+.platform-body {
+  min-width: 0;
+}
+
+.platform-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.platform-name.android {
+  color: #2fb46b;
+}
+
+.platform-reqs {
+  list-style: none;
+  margin: 10px 0 18px;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.platform-reqs li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.platform-reqs li::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.platform-or {
+  display: grid;
+  place-items: center;
+}
+
+.platform-or::before,
+.platform-or::after {
+  content: '';
+  width: 1px;
+  height: 46px;
+  background: var(--border);
+}
+
+.platform-or span {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin: 10px 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Store badges */
+.store-badge {
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #000;
+  color: #fff;
+  border-radius: 10px;
+  padding: 8px 16px 8px 12px;
+  transition: opacity 0.15s ease;
+}
+
+.store-badge:hover .badge {
+  opacity: 0.85;
+}
+
+.badge-apple {
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+
+.badge-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.badge-text small {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.9;
+}
+
+.badge-text strong {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .download-card,
+  .hero-text {
+    margin-inline: auto;
+  }
+
+  .dots {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .shell {
+    width: min(1180px, 100% - 32px);
+  }
+
+  .nav-cta {
+    padding: 12px 18px;
+    font-size: 0.9rem;
+  }
+
+  .platform-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .platform-or {
+    grid-auto-flow: column;
+  }
+
+  .platform-or::before,
+  .platform-or::after {
+    width: 46px;
+    height: 1px;
+  }
+
+  .platform-or span {
+    margin: 0 10px;
+  }
+}
+
+@media (max-width: 560px) {
+  .platform-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .platform-reqs li {
+    justify-content: center;
+  }
+}
