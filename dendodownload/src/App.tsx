@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
-import phonesImg from './assets/image.jpg'
+import homeImg from './assets/Home Page Phone Mockup.png'
+import referImg from './assets/image.jpg'
 import { AndroidLogo, AppleLogo, AppStoreBadge, GooglePlayBadge } from './Logos'
 
 const IOS_URL =
@@ -66,13 +67,22 @@ function App() {
             </div>
 
             <div className="hero-art">
-              <img
-                className="phones"
-                src={phonesImg}
-                width="873"
-                height="1800"
-                alt="The Dendo app showing the Refer &amp; Earn screen"
-              />
+              <div className="phones">
+                <img
+                  className="phone phone-front"
+                  src={homeImg}
+                  width="877"
+                  height="1793"
+                  alt="The Dendo app home screen, showing food categories and nearby restaurants"
+                />
+                <img
+                  className="phone phone-back"
+                  src={referImg}
+                  width="873"
+                  height="1800"
+                  alt="The Dendo app Refer &amp; Earn screen"
+                />
+              </div>
             </div>
           </div>
         </section>

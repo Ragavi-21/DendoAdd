@@ -279,14 +279,31 @@
   min-width: 0;
 }
 
-/* the render is a tall 873x1800 portrait, so cap its HEIGHT — capping width
-   would make it overrun the viewport vertically */
+/* Both renders are tall ~0.49 portraits, so the composition is driven by a
+   single height — sizing by width would overrun the viewport vertically. */
 .phones {
+  --ph: min(580px, 72vh);
   position: relative;
-  width: 300px;
-  max-width: 100%;
-  height: 650px;
-  max-height: min(770px, 78vh);
+  display: flex;
+  align-items: center;
+}
+
+.phone {
+  width: auto;
+  height: var(--ph);
+  filter: drop-shadow(0 26px 42px rgba(11, 18, 32, 0.22));
+}
+
+.phone-front {
+  position: relative;
+  z-index: 2;
+}
+
+.phone-back {
+  height: calc(var(--ph) * 0.9);
+  /* tuck it behind the front phone and lift it slightly */
+  margin-left: calc(var(--ph) * -0.22);
+  transform: translateY(-5%);
 }
 
 /* Decorations */
@@ -487,11 +504,22 @@
   }
 
   .phones {
-    max-height: min(560px, 62vh);
+    --ph: min(520px, 60vh);
   }
 
   .dots {
     display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  /* two overlapping phones get too cramped — show the home screen alone */
+  .phone-back {
+    display: none;
+  }
+
+  .phones {
+    --ph: min(480px, 58vh);
   }
 }
 
