@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
-import phonesImg from './assets/image.png'
+import phonesImg from './assets/image.jpg'
 import { AndroidLogo, AppleLogo, AppStoreBadge, GooglePlayBadge } from './Logos'
 
 const IOS_URL =
@@ -44,7 +44,7 @@ function App() {
                 <div className="download-panel">
                   <a
                     href={ANDROID_URL}
-                    className="os"
+                    className="os os-android"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -54,7 +54,7 @@ function App() {
                   <span className="os-divider" aria-hidden="true" />
                   <a
                     href={IOS_URL}
-                    className="os"
+                    className="os os-ios"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -69,9 +69,9 @@ function App() {
               <img
                 className="phones"
                 src={phonesImg}
-                width="966"
-                height="1024"
-                alt="The Dendo app on two phones, showing the home screen and live order tracking"
+                width="873"
+                height="1800"
+                alt="The Dendo app showing the Refer &amp; Earn screen"
               />
             </div>
           </div>
