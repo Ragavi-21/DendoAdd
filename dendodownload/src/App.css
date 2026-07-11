@@ -164,7 +164,7 @@
 .hero-grid {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   align-items: center;
   gap: clamp(32px, 5vw, 64px);
 }
@@ -279,31 +279,14 @@
   min-width: 0;
 }
 
-/* Both renders are tall ~0.49 portraits, so the composition is driven by a
-   single height — sizing by width would overrun the viewport vertically. */
+/* one 4041x4783 render with both phones and their tilt already composed —
+   cap the height so it can't overrun the viewport, width follows */
 .phones {
-  --ph: min(580px, 72vh);
   position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.phone {
   width: auto;
-  height: var(--ph);
-  filter: drop-shadow(0 26px 42px rgba(11, 18, 32, 0.22));
-}
-
-.phone-front {
-  position: relative;
-  z-index: 2;
-}
-
-.phone-back {
-  height: calc(var(--ph) * 0.9);
-  /* tuck it behind the front phone and lift it slightly */
-  margin-left: calc(var(--ph) * -0.22);
-  transform: translateY(-5%);
+  max-width: 100%;
+  height: auto;
+  max-height: min(680px, 80vh);
 }
 
 /* Decorations */
@@ -504,7 +487,7 @@
   }
 
   .phones {
-    --ph: min(520px, 60vh);
+    max-height: min(560px, 62vh);
   }
 
   .dots {
@@ -513,13 +496,8 @@
 }
 
 @media (max-width: 560px) {
-  /* two overlapping phones get too cramped — show the home screen alone */
-  .phone-back {
-    display: none;
-  }
-
   .phones {
-    --ph: min(480px, 58vh);
+    max-height: min(440px, 52vh);
   }
 }
 
